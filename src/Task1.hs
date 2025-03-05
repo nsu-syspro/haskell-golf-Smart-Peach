@@ -51,6 +51,6 @@ decode = concatMap $ uncurry replicate
 -- ""
 --
 rotate :: Int -> [a] -> [a] 
-rotate num str = take len $ drop (num `mod` len) (cycle str)
+rotate n s = take l $ drop (n `mod` l) (cycle s)
   where
-    len = length str
+    l = length s
