@@ -1,3 +1,5 @@
+{-# LANGUAGE Haskell2010 #-}
+{-# LANGUAGE BangPatterns #-}
 module Task1 where
 
 import Prelude
@@ -15,7 +17,7 @@ import Data.List
 -- []
 --
 encode :: Eq a => [a] -> [(Int, a)]
-encode str = map (\x -> (length x, head x)) $ group str
+encode = map (\x -> (length x, head x)) . group
 
 -- | Decompresses given data using run-length decoding.
 --
