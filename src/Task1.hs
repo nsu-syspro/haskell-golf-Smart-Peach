@@ -1,4 +1,9 @@
+{-# LANGUAGE Haskell2010 #-}
+{-# LANGUAGE BangPatterns #-}
 module Task1 where
+
+import Prelude
+import Data.List
 
 -- | Compresses given data using run-length encoding.
 --
@@ -12,7 +17,7 @@ module Task1 where
 -- []
 --
 encode :: Eq a => [a] -> [(Int, a)]
-encode = error "TODO: define encode"
+encode = map (\x -> (length x, head x)) . group
 
 -- | Decompresses given data using run-length decoding.
 --
@@ -26,7 +31,7 @@ encode = error "TODO: define encode"
 -- []
 --
 decode :: [(Int, a)] -> [a]
-decode = error "TODO: define decode"
+decode = concatMap $ uncurry replicate
 
 -- | Rotates given finite list to the left for a given amount N
 --
@@ -45,5 +50,7 @@ decode = error "TODO: define decode"
 -- >>> rotate 5 ""
 -- ""
 --
-rotate :: Int -> [a] -> [a]
-rotate = error "TODO: define rotate"
+rotate :: Int -> [a] -> [a] 
+rotate n s = take l $ drop (n `mod` l) (cycle s)
+  where
+    l = length s
