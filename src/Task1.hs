@@ -29,7 +29,7 @@ encode str = map (\x -> (length x, head x)) $ group str
 -- []
 --
 decode :: [(Int, a)] -> [a]
-decode arr = concatMap (\x -> replicate (fst x) (snd x)) arr
+decode = concatMap $ uncurry replicate
 
 -- | Rotates given finite list to the left for a given amount N
 --
